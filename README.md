@@ -1,87 +1,191 @@
-# VineCast-Tv
-X96Q App
-# 📺 VineCast TV
 
-**X96Q Android TV, Smart TV ve FlutterFlow WebView Launcher** için özel olarak geliştirilmiş, yüksek performanslı ve modern IPTV & VOD web oynatıcısı.
+# VineCast TV
 
-![VineCast TV Banner](https://img.shields.io/badge/VineCast-TV-orange?style=for-the-badge&logo=react&logoColor=white)
-![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)
-![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
+**Modern IPTV ve VOD Web Oynatıcı | Android TV · LG webOS · FlutterFlow WebView**
 
-## ✨ Özellikler
+VineCast TV; M3U/M3U8 oynatma listelerini kullanmak ve internet üzerinden erişilebilen canlı yayınları veya isteğe bağlı video içeriklerini oynatmak üzere tasarlanan, televizyon kullanımına odaklı bir web uygulamasıdır.
 
--  **M3U/M3U8 Playlist Desteği:** Harici IPTV listelerini (URL veya Ham Metin) anında ayrıştırır, kategorilere ayırır ve aranabilir liste sunar.
-- 📱 **QR Kod ile Yayın Aktarma:** İzlenen yayını QR kod ile telefonunuza veya başka bir cihaza anında aktarın (Deep-Link desteği).
-- 🎮 **TV Kumandası (DPad) Optimizasyonu:** X96Q, LG Magic Remote ve standart TV kumandalarının yön/OK tuşlarıyla kusursuz navigasyon.
-- 🚀 **FlutterFlow Launcher Uyumluluğu:** WebView içinde tam ekran, zoom'suz ve postMessage API'si ile haberleşebilen yapı.
--  **Modern Arayüz:** Tailwind CSS v4 ve Framer Motion ile akıcı, koyu tema (Dark Mode) odaklı premium tasarım.
-- 📶 **Çoklu Kalite (HLS):** HLS.js entegrasyonu ile düşük ve yüksek bant genişliğine göre otomatik/manüel kalite geçişi.
+Arayüz; uzaktan kumandayla gezinme, geniş ekran kullanımı ve farklı WebView ortamlarına uyum hedefleri doğrultusunda geliştirilir.
 
-## ️ Teknoloji Yığını
+## İçindekiler
 
-- **Framework:** React 19 + TypeScript
-- **Build Tool:** Vite
-- **Styling:** Tailwind CSS v4
-- **Video Engine:** HLS.js
-- **State & UI:** Framer Motion, Lucide React
-- **Package Manager:** Bun
+- [Özellikler](#özellikler)
+- [Teknoloji Yığını](#teknoloji-yığını)
+- [Gereksinimler](#gereksinimler)
+- [Yerel Kurulum](#yerel-kurulum)
+- [Üretim Derlemesi](#üretim-derlemesi)
+- [FlutterFlow WebView Entegrasyonu](#flutterflow-webview-entegrasyonu)
+- [Güvenlik ve Gizlilik](#güvenlik-ve-gizlilik)
+- [Lisans](#lisans)
 
-## 📦 Kurulum ve Çalıştırma
+## Özellikler
 
-Projeyi lokalde çalıştırmak için bilgisayarınızda [Bun](https://bun.sh/) kurulu olmalıdır.
+### IPTV ve VOD
 
-1. Depoyu klonlayın:
+- **M3U/M3U8 oynatma listeleri:** Desteklenen oynatma listelerinin ayrıştırılması ve kanal bilgilerinin işlenmesi.
+- **HLS oynatma:** Uyumlu HLS akışlarının HLS.js üzerinden oynatılması; tarayıcının yerel HLS desteği de dikkate alınır.
+- **Canlı yayın ve VOD:** Uygun kaynaklar için canlı yayın ve isteğe bağlı video oynatma deneyimi.
+- **Hata yönetimi:** Erişilemeyen veya desteklenmeyen akışlar için kullanıcıya anlaşılır geri bildirim sağlanması.
+
+### Televizyon arayüzü
+
+- **D-pad navigasyonu:** Yön tuşları ve onay düğmesiyle menüler, kanal listeleri ve oynatıcı kontrolleri arasında gezinmeye uygun tasarım.
+- **Uzaktan kumanda odak yönetimi:** Odak göstergelerinin görünür tutulması ve klavye tabanlı gezinmenin desteklenmesi.
+- **Geniş ekran tasarımı:** Televizyon ekranlarında okunabilir metinler ve kolay erişilebilir kontroller.
+
+### QR ve bağlantı paylaşımı
+
+- **QR kod üretimi:** Desteklenen bağlantı veya aktarım bilgilerinin QR koduyla gösterilmesi.
+- **Derin bağlantı (deep link):** Uygulama tarafından tanımlanan bağlantı biçimi üzerinden uygun içeriğin açılmasına yönelik altyapı.
+- **Güvenli aktarım:** QR koduna veya bağlantıya hassas erişim bilgileri eklenirken dikkatli olunması.
+
+> Not: Bu özelliklerin çalışması, ilgili bileşenlerin ve olay işleyicilerinin uygulama kaynak kodunda gerçekten bulunmasına bağlıdır. README tek başına işlev eklemez.
+
+## Teknoloji Yığını
+
+| Teknoloji | Kullanım amacı |
+|---|---|
+| React 19 | Kullanıcı arayüzü ve bileşenler |
+| TypeScript | Tür güvenliği ve kod bakımı |
+| Vite | Geliştirme sunucusu ve üretim derlemesi |
+| Tailwind CSS v4 | Yardımcı sınıflarla arayüz stilleri |
+| HLS.js | Uyumlu tarayıcılarda HLS akışı oynatma |
+| qrcode | QR kodu oluşturma |
+| Framer Motion | Arayüz animasyonları |
+| lucide-react | Simge bileşenleri |
+| Bun | Paket yönetimi ve komut çalıştırma |
+
+## Gereksinimler
+
+- Güncel bir Bun sürümü
+- Git
+- Desteklenen bir web tarayıcısı
+- Oynatma testi için erişilebilir bir M3U/M3U8 kaynağı
+
+## Yerel Kurulum
+
+### 1. Depoyu indirin
+
 ```bash
-   git clone https://github.com/KULLANICI_ADINIZ/vinecast-tv.git
-   cd vinecast-tv
+git clone https://github.com/isgcep-ux/VineCast-Tv.git
+cd VineCast-Tv
 ```
 
-2. Bağımlılıkları yükleyin:
+### 2. Bağımlılıkları yükleyin
+
+Depoda `bun.lock` bulunuyorsa:
+
 ```bash
-   bun install
+bun install
 ```
 
-3. Geliştirme sunucusunu başlatın:
-```bash
-   bun run dev
-```
-   *Uygulama varsayılan olarak `http://localhost:3000` adresinde çalışacaktır.*
+### 3. Geliştirme sunucusunu başlatın
 
-4. Production derlemesi alın:
 ```bash
-   bun run build
-   bun run preview
+bun run dev
 ```
 
-## 📱 FlutterFlow WebView Entegrasyonu
+Terminalde gösterilen yerel adresi tarayıcıda açın. Vite projelerinde adres genellikle `http://localhost:5173` olur; terminalde gösterilen adresi esas alın.
 
-VineCast TV, FlutterFlow projelerinde "Launcher" veya "IPTV Sayfası" olarak kullanılmak üzere optimize edilmiştir.
+## Üretim Derlemesi
 
-1. FlutterFlow'da bir **WebView** widget'ı ekleyin.
-2. **URL** kısmına VineCast TV'nin host edildiği adresi yazın.
-3. WebView Ayarları:
-   - `JavaScript`: **Enabled**
-   - `LocalStorage`: **Enabled**
-   - `ZoomEnabled`: **Disabled**
-4. **Deep-Link / Mesajlaşma:** FlutterFlow'dan TV'ye komut göndermek için WebView içinde `window.postMessage` kullanabilir, URL parametresi (`?url=...`) ile doğrudan yayın başlatabilirsiniz.
+Uygulamayı üretim için derleyin:
 
-## 🎮 TV Kumanda Kısayolları
+```bash
+bun run build
+```
 
-| Tuş | İşlev |
-| :--- | :--- |
-| **Yukarı / Aşağı** | Kanallar listesinde gezinme |
-| **Sağ / Sol** | Yan menüyü açma/kapama (Tam ekran modu) |
-| **OK / Enter** | Kanal seçme / Listeyi gösterme |
-| **Geri / Escape** | Menüyü kapatma / Geri dönme |
-| **Kırmızı (LG)** | QR Kod menüsünü açma/kapama |
+Derleme çıktısı, standart Vite yapılandırmasında `dist/` dizinine yazılır.
 
-## 🤝 Katkıda Bulunma
+Derlenmiş sürümü yerel olarak önizlemek için:
 
-Katkılarınız, sorun bildirimleriniz ve özellik önerileriniz her zaman açıktır! Lütfen katkıda bulunmadan önce bir "Issue" açarak tartışalım.
+```bash
+bun run preview
+```
 
-## 📄 Lisans
+Bu komutların çalışması için `package.json` dosyasında sırasıyla `dev`, `build` ve `preview` betiklerinin tanımlanmış olması gerekir.
 
-Bu proje [MIT Lisansı](LICENSE) altında lisanslanmıştır.
+## FlutterFlow WebView Entegrasyonu
 
----
-*Made with ❤️ for Smart TV & IPTV Enthusiasts.*
+VineCast TV, FlutterFlow içinde bir WebView üzerinden açılacak şekilde barındırılabilir. WebView entegrasyonu, web uygulamasının FlutterFlow projesine kendiliğinden yerel bir Flutter bileşeni olarak dönüştürüldüğü anlamına gelmez.
+
+### 1. Web uygulamasını yayınlayın
+
+Önce uygulamayı bir web barındırma hizmetinde yayınlayın. HTTPS kullanan, erişilebilir bir yayın adresi elde edin.
+
+Örnek adres biçimi:
+
+```text
+https://your-domain.example
+```
+
+Bu adres örnektir; kendi yayın adresinizle değiştirin.
+
+### 2. FlutterFlow'a WebView ekleyin
+
+1. FlutterFlow projenizi açın.
+2. WebView bileşenini destekleyen bir sayfaya ekleyin.
+3. WebView URL alanına yayınladığınız VineCast TV adresini girin.
+4. Bileşeni sayfaya ve ekran boyutuna uygun şekilde düzenleyin.
+5. Hedef cihazda ağ erişimini, ekran yönünü, tam ekran davranışını ve odak yönetimini test edin.
+
+FlutterFlow sürümünüze göre WebView bileşeninin özellikleri ve kullanılabilir eylemler değişebilir.
+
+### 3. D-pad ve uzaktan kumanda
+
+Android TV veya TV kutusunda aşağıdaki kontrolleri gerçek cihazda test edin:
+
+- Yukarı/aşağı/sol/sağ yön tuşları
+- OK/Enter
+- Geri tuşu
+- Kanal listesi ve oynatıcı kontrolleri arasında odak geçişi
+
+Web sayfasındaki klavye olaylarının WebView tarafından doğru iletildiğini doğrulayın. Gerekirse FlutterFlow tarafında özel eylem veya yerel kod gerekebilir.
+
+### 4. JavaScript ve uygulama iletişimi
+
+Web uygulamasıyla FlutterFlow arasındaki iletişim, kullanılan WebView bileşeninin desteklediği JavaScript köprüsüne bağlıdır. `window.postMessage` tek başına her FlutterFlow WebView kurulumunda yerel uygulamayla çift yönlü iletişim garantisi vermez.
+
+Bir köprü kurmadan önce mesaj biçimini belirleyin. Örneğin:
+
+```json
+{
+  "type": "OPEN_CHANNEL",
+  "payload": {
+    "channelId": "example-channel"
+  }
+}
+```
+
+Bu yalnızca örnek mesaj biçimidir. `example-channel` gerçek bir kanal değildir. Mesajı gönderen ve alan tarafların aynı sözleşmeyi uygulaması gerekir.
+
+### 5. QR kod ve derin bağlantı
+
+QR kodu, uygulamanın desteklediği bir web adresini veya tanımlanmış bir derin bağlantıyı içerebilir. Kullanılacak bağlantı biçimi uygulamada açıkça tanımlanmalı ve hedef cihazda test edilmelidir.
+
+- Gerçek yayın adresini kullanın.
+- Desteklenmeyen özel URL şemaları varsaymayın.
+- Hassas oynatma listesi URL'lerini veya kimlik bilgilerini QR koduyla paylaşmayın.
+- Android, LG webOS ve FlutterFlow ortamlarında bağlantı açılışını ayrı ayrı test edin.
+
+### 6. Yayın öncesi kontrol listesi
+
+- [ ] HTTPS üzerinden erişim çalışıyor.
+- [ ] WebView sayfası doğru açılıyor.
+- [ ] Uzaktan kumanda ile gezinme test edildi.
+- [ ] HLS akışları hedef cihazda test edildi.
+- [ ] QR kod ve derin bağlantı akışı doğrulandı.
+- [ ] Geri tuşu ve tam ekran davranışı kontrol edildi.
+- [ ] Hatalı veya erişilemeyen kaynaklar için kullanıcı geri bildirimi var.
+
+## Güvenlik ve Gizlilik
+
+- Yalnızca erişim izniniz olan yayınları ve medya kaynaklarını kullanın.
+- Parolaları, API anahtarlarını ve özel oynatma listesi bağlantılarını Git deposuna eklemeyin.
+- Gizli yapılandırmaları `.env` gibi yerel dosyalarda tutun; gerçek gizli değerleri istemci tarafında yayınlamayın.
+- Kaynağı bilinmeyen M3U bağlantılarını açarken dikkatli olun.
+- Kullanıcıların eklediği URL'leri doğrulayın ve uygulama içinde güvenli hata yönetimi uygulayın.
+
+## Lisans
+
+Lisans bilgisi için depodaki `LICENSE` dosyasını kontrol edin. Lisans dosyası yoksa dağıtımdan önce projeye uygun bir lisans ekleyin.
