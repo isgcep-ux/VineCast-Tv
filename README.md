@@ -189,3 +189,4 @@ QR kodu, uygulamanın desteklediği bir web adresini veya tanımlanmış bir der
 ## Lisans
 
 Lisans bilgisi için depodaki `LICENSE` dosyasını kontrol edin. Lisans dosyası yoksa dağıtımdan önce projeye uygun bir lisans ekleyin.
+p
